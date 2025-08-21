@@ -1,0 +1,46 @@
+{
+  "version": 4,
+  "configurations": [
+    {
+      "name": "nRF5 SDK",
+      "includePath": [
+        "${workspaceFolder}",
+        "${workspaceFolder}/config",
+        "${env:NRF5_SDK_PATH}/components/**",
+        "${env:NRF5_SDK_PATH}/components/libraries/balloc",
+        "${env:NRF5_SDK_PATH}/modules/nrfx/**",
+        "${env:NRF5_SDK_PATH}/integration/nrfx/**",
+        "${env:NRF5_SDK_PATH}/external/**",
+        "${env:GNU_INSTALL_ROOT}/../lib/gcc/arm-none-eabi/10.3.1/include",
+        "${env:GNU_INSTALL_ROOT}/../lib/gcc/arm-none-eabi/10.3.1/include-fixed",
+        "${env:GNU_INSTALL_ROOT}/../arm-none-eabi/include"
+      ],
+      "defines": [
+        "USE_APP_CONFIG",
+        "BOARD_PCA10056",
+        "BSP_DEFINES_ONLY",
+        "CONFIG_GPIO_AS_PINRESET",
+        "FLOAT_ABI_HARD",
+        "NRF52840_XXAA",
+        "__HEAP_SIZE=8192",
+        "__STACK_SIZE=8192"
+      ],
+      "compilerPath": "${env:GNU_INSTALL_ROOT}/arm-none-eabi-gcc",
+      "cStandard": "c11",
+      "cppStandard": "c++14",
+      "intelliSenseMode": "gcc-arm",
+      "compilerArgs": [
+        "-mcpu=cortex-m4",
+        "-mthumb",
+        "-mabi=aapcs",
+        "-mfloat-abi=hard",
+        "-mfpu=fpv4-sp-d16",
+        "-ffunction-sections",
+        "-fdata-sections",
+        "-fno-strict-aliasing",
+        "-fno-builtin",
+        "-fshort-enums"
+      ]
+    }
+  ]
+}

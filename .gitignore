@@ -1,0 +1,14 @@
+# Build output
+_build/
+*.o
+*.d
+*.bin
+*.hex
+*.elf
+*.map
+*.in
+*.out
+
+# OS
+.DS_Store
+Thumbs.db

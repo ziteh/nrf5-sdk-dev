@@ -1,0 +1,27 @@
+{
+  "name": "nRF5 SDK Development Environment",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "remoteUser": "developer",
+  "workspaceFolder": "/workspace",
+  "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=cached",
+  "mounts": [
+    "source=${localEnv:NRF5_SDK_PATH},target=/nrf5-sdk,type=bind,consistency=cached"
+  ],
+  "runArgs": [
+    "--net=host", // For Linux hosts to allow debugging with GDB server
+    "--env-file=${localWorkspaceFolder}/.env"
+  ],
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "bash"
+      },
+      "extensions": [
+        "marus25.cortex-debug",
+        "ms-vscode.cpptools-extension-pack"
+      ]
+    }
+  }
+}

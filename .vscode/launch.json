@@ -1,0 +1,19 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Debug (GDB Server)",
+      "cwd": "${workspaceFolder}",
+      "executable": "${workspaceFolder}/_build/nrf52840_xxaa.out",
+      "request": "launch",
+      "type": "cortex-debug",
+      "runToEntryPoint": "main",
+      "servertype": "external",
+      "gdbTarget": "${env:GDB_SERVER_IP}:${env:GDB_SERVER_PORT}",
+      "gdbPath": "gdb-multiarch",
+      "device": "nRF52840_xxAA",
+      "interface": "swd",
+      "showDevDebugOutput": "raw"
+    }
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  // See https://go.microsoft.com/fwlink/?LinkId=733558
+  // for the documentation about the tasks.json format
+  "version": "2.0.0",
+  "type": "shell",
+  "problemMatcher": [],
+  "options": {
+    "cwd": "${workspaceFolder}",
+    "env": {
+      "GDB_SERVER_IP": "${env:GDB_SERVER_IP}",
+      "GDB_SERVER_PORT": "${env:GDB_SERVER_PORT}"
+    }
+  },
+  "tasks": [
+    {
+      "label": "Flash",
+      "type": "shell",
+      "command": "make",
+      "args": [
+        "flash"
+      ],
+    },
+    {
+      "label": "Erase",
+      "type": "shell",
+      "command": "make",
+      "args": [
+        "erase"
+      ],
+    },
+    {
+      "label": "Reset",
+      "type": "shell",
+      "command": "make",
+      "args": [
+        "reset"
+      ],
+    },
+    {
+      "label": "Build",
+      "group": {
+        "kind": "build",
+        "isDefault": true,
+      },
+      "command": "make",
+    },
+    {
+      "label": "Clean",
+      "group": "build",
+      "command": "make",
+      "args": [
+        "clean"
+      ],
+    },
+    {
+      "label": "Rebuild",
+      "group": "build",
+      "dependsOn": [
+        "Clean",
+        "Build"
+      ],
+      "dependsOrder": "sequence",
+    },
+  ]
+}
