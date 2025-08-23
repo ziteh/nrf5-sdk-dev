@@ -51,7 +51,8 @@ WORKDIR /opt
 # ARM GCC toolchain
 COPY --from=downloader /downloads/gcc-arm-none-eabi.tar.bz2 .
 RUN tar -xjf gcc-arm-none-eabi.tar.bz2 \
-    && rm gcc-arm-none-eabi.tar.bz2
+    && rm gcc-arm-none-eabi.tar.bz2 \
+    && rm -rf gcc-arm-none-eabi-10.3-2021.10/share/doc
 
 ENV PATH="/opt/gcc-arm-none-eabi-10.3-2021.10/bin:${PATH}"
 
