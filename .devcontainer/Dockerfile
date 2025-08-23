@@ -9,6 +9,7 @@ RUN apt-get update && apt-get install -y \
     wget \
     curl \
     unzip \
+    bzip2 \
     && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /downloads
@@ -22,6 +23,11 @@ RUN ARCH=$(uname -m) && \
     echo "Downloading ARM GCC for x86_64..." && \
     wget -q -O gcc-arm-none-eabi.tar.bz2 https://developer.arm.com/-/media/Files/downloads/gnu-rm/10.3-2021.10/gcc-arm-none-eabi-10.3-2021.10-x86_64-linux.tar.bz2; \
     fi
+
+RUN tar -xjf gcc-arm-none-eabi.tar.bz2 \
+    && mv gcc-arm-none-eabi-10.3-2021.10 arm-gcc \
+    && rm gcc-arm-none-eabi.tar.bz2 \
+    && rm -rf arm-gcc/share/doc
 
 # nRF Command Line Tools
 # RUN ARCH=$(uname -m) && \
@@ -40,20 +46,12 @@ ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential \
     git \
-    unzip \
     gdb-multiarch \
-    # netcat \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-WORKDIR /opt
-
 # ARM GCC toolchain
-COPY --from=downloader /downloads/gcc-arm-none-eabi.tar.bz2 .
-RUN tar -xjf gcc-arm-none-eabi.tar.bz2 \
-    && mv gcc-arm-none-eabi-10.3-2021.10 /opt/arm-gcc \
-    && rm gcc-arm-none-eabi.tar.bz2 \
-    && rm -rf /opt/arm-gcc/share/doc
+COPY --from=downloader /downloads/arm-gcc /opt/arm-gcc
 
 ENV PATH="/opt/arm-gcc/bin:${PATH}"
 
