@@ -7,7 +7,7 @@
   "workspaceFolder": "/workspace",
   "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=cached",
   "mounts": [
-    "source=${localEnv:NRF5_SDK_PATH},target=/nrf5-sdk,type=bind,consistency=cached"
+    "source=${localEnv:NRF5_SDK_PATH},target=/opt/nrf5-sdk,type=bind,consistency=cached"
   ],
   "runArgs": [
     "--net=host", // For Linux hosts to allow debugging with GDB server

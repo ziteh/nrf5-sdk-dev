@@ -51,10 +51,11 @@ WORKDIR /opt
 # ARM GCC toolchain
 COPY --from=downloader /downloads/gcc-arm-none-eabi.tar.bz2 .
 RUN tar -xjf gcc-arm-none-eabi.tar.bz2 \
+    && mv gcc-arm-none-eabi-10.3-2021.10 /opt/arm-gcc \
     && rm gcc-arm-none-eabi.tar.bz2 \
-    && rm -rf gcc-arm-none-eabi-10.3-2021.10/share/doc
+    && rm -rf /opt/arm-gcc/share/doc
 
-ENV PATH="/opt/gcc-arm-none-eabi-10.3-2021.10/bin:${PATH}"
+ENV PATH="/opt/arm-gcc/bin:${PATH}"
 
 # nRF Command Line Tools
 # COPY --from=downloader /downloads/nrf-command-line-tools.tar.gz .
@@ -70,7 +71,7 @@ RUN useradd -m -s /bin/bash developer \
 USER developer
 WORKDIR /workspace
 
-ENV NRF5_SDK_PATH="/nrf5-sdk"
-ENV GNU_INSTALL_ROOT="/opt/gcc-arm-none-eabi-10.3-2021.10/bin/"
-ENV GNU_VERSION="10.3-2021.10"
-ENV GNU_PREFIX="arm-none-eabi"
+ENV NRF5_SDK_PATH="/opt/nrf5-sdk"
+ENV GNU_INSTALL_ROOT="/opt/arm-gcc/bin/"
+# ENV GNU_VERSION="10.3-2021.10"
+# ENV GNU_PREFIX="arm-none-eabi"

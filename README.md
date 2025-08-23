@@ -77,7 +77,7 @@ On the ***host***:
 ```bash
 podman run --rm \
     -v "${PWD}:/workspace" \
-    -v "${NRF5_SDK_PATH}:/nrf5-sdk" \
+    -v "${NRF5_SDK_PATH}:/opt/nrf5-sdk" \
     -w /workspace \
     nrf5-sdk-dev \
     bash -c "make clean && make"
