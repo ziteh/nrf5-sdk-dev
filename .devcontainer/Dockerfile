@@ -63,9 +63,8 @@ ENV PATH="/opt/gcc-arm-none-eabi-10.3-2021.10/bin:${PATH}"
 
 # ENV PATH="/opt/nrf-cli-tools/bin:${PATH}"
 
-RUN useradd -m -s /bin/bash developer
-
-RUN chown -R developer:developer /opt
+RUN useradd -m -s /bin/bash developer \
+    && chown -R developer:developer /opt
 
 USER developer
 WORKDIR /workspace
