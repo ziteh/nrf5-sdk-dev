@@ -16,6 +16,9 @@
   "customizations": {
     "vscode": {
       "settings": {
+        "files.readonlyInclude": {
+          "/opt/**": true
+        },
         "terminal.integrated.defaultProfile.linux": "bash"
       },
       "extensions": [
