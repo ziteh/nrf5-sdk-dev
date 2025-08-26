@@ -16,7 +16,7 @@ On the ***host***:
    export NRF5_SDK_PATH="~/Documents/sdk/nRF5_SDK_17.1.0_ddde560"
    ```
 3. **Debugger**: Install either [J-Link](https://www.segger.com/downloads/jlink/) or [OpenOCD](https://openocd.org/).
-4. **Configuration**: Check and modify the values in the `.env` file if necessary.
+4. **Configuration**: Check and modify the values in the [`.env`](./.env) file if necessary.
 
 ### GDB Server
 
