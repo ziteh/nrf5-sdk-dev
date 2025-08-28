@@ -10,10 +10,12 @@ Available on x86-64 and Apple M-series Arm CPU.
 
 On the ***host***:
 
-1. **nRF5 SDK**: [Download](https://www.nordicsemi.com/Products/Development-software/nRF5-SDK/Download#infotabs) and extract it to your preferred location, such as `~/Documents/sdk/nRF5_SDK_17.1.0_ddde560`.
-2. **Environment Variable**: Set the `NRF5_SDK_PATH` environment variable to your SDK location. For example:
-   ```bash
-   export NRF5_SDK_PATH="~/Documents/sdk/nRF5_SDK_17.1.0_ddde560"
+1. **nRF5 SDK**: [Download](https://www.nordicsemi.com/Products/Development-software/nRF5-SDK/Download#infotabs) and extract it to your preferred location, such as `C:/nordic/nRF5_SDK_17.1.0_ddde560`.
+2. **Update SDK Path**: Update the SDK mounting path in `.devcontainer.json` to match the location where you extracted the SDK. For example:
+   ```json
+    "source=/mnt/c/nordic/nrf5_sdk_17.1.0_ddde560,target=/opt/nrf5-sdk",
+    // or env
+    "source=${localEnv:NRF5_SDK_PATH},target=/opt/nrf5-sdk",
    ```
 3. **Debugger**: Install either [J-Link](https://www.segger.com/downloads/jlink/) or [OpenOCD](https://openocd.org/).
 4. **Configuration**: Check and modify the values in the [`.env`](./.env) file if necessary.

@@ -3,6 +3,10 @@ PROJECT_NAME     := nrf5_sdk_project
 TARGETS          := nrf52840_xxaa
 OUTPUT_DIRECTORY := _build
 
+# Enable build cache and parallel compilation
+BUILD_CACHE_DIR  := .build-cache
+MAKEFLAGS        += -j$(shell nproc)
+
 SDK_ROOT         := $(NRF5_SDK_PATH)
 PROJ_DIR         := .
 TEMPLATE_PATH    := $(SDK_ROOT)/components/toolchain/gcc
@@ -12,8 +16,10 @@ $(OUTPUT_DIRECTORY)/nrf52840_xxaa.out: \
   LINKER_SCRIPT  := $(PROJ_DIR)/linker/nrf52840_xxaa.ld
 
 OPT = -O3 -g3
-# Uncomment the line below to enable link time optimization
-#OPT += -flto
+# Enable link time optimization for better performance
+OPT += -flto
+# Enable compilation caching and optimization
+OPT += -pipe -ffast-math
 
 # Source files
 SRC_FILES += \
@@ -92,6 +98,8 @@ CFLAGS += $(COMMON_DEFINES)
 CFLAGS += -Wall -Werror
 CFLAGS += -ffunction-sections -fdata-sections -fno-strict-aliasing
 CFLAGS += -fno-builtin -fshort-enums
+# Enable compilation speed optimizations
+CFLAGS += -Wno-unused-function -Wno-unused-variable
 
 # C++ flags
 CXXFLAGS += $(OPT)

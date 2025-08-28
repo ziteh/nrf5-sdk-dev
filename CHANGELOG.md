@@ -22,6 +22,7 @@ Types of changes:
 - Remove the docs files of armgcc to reduce image size.
 - Update armgcc and nRF5 SDK path to `/opt/`.
 - Set EOL to LF.
+- Improve IO performance.
 
 ## 0.1.0 - 2025-08-23
 

@@ -5,13 +5,18 @@
   },
   "remoteUser": "developer",
   "workspaceFolder": "/workspace",
-  "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=cached",
+  "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=delegated",
   "mounts": [
-    "source=${localEnv:NRF5_SDK_PATH},target=/opt/nrf5-sdk,type=bind,consistency=cached"
+    "source=/PATH/TO/NRF5_SDK,target=/opt/nrf5-sdk,type=bind,consistency=delegated,readonly",
+    "source=nrf5-build-cache,target=/workspace/.build-cache,type=volume",
+    "target=/tmp,type=tmpfs,tmpfs-size=512m"
   ],
   "runArgs": [
-    "--net=host", // For Linux hosts to allow debugging with GDB server
-    "--env-file=${localWorkspaceFolder}/.env"
+    // "--shm-size=1g",
+    // "--memory=4g",
+    // "--cpus=4",
+    "--env-file=${localWorkspaceFolder}/.env",
+    "--net=host" // For Linux hosts to allow debugging with GDB server
   ],
   "customizations": {
     "vscode": {

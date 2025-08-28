@@ -47,6 +47,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential \
     git \
     gdb-multiarch \
+    ccache \
+    ninja-build \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
@@ -66,6 +68,15 @@ ENV PATH="/opt/arm-gcc/bin:${PATH}"
 RUN useradd -m -s /bin/bash developer \
     && chown -R developer:developer /opt
 
+# Setup ccache symlinks for ARM GCC
+RUN mkdir -p /opt/ccache-links && \
+    ln -s /usr/bin/ccache /opt/ccache-links/arm-none-eabi-gcc && \
+    ln -s /usr/bin/ccache /opt/ccache-links/arm-none-eabi-g++
+
+# Pre-create build cache directory with correct ownership
+RUN mkdir -p /workspace/.build-cache/ccache && \
+    chown -R developer:developer /workspace/.build-cache
+
 USER developer
 WORKDIR /workspace
 
@@ -73,3 +84,9 @@ ENV NRF5_SDK_PATH="/opt/nrf5-sdk"
 ENV GNU_INSTALL_ROOT="/opt/arm-gcc/bin/"
 # ENV GNU_VERSION="10.3-2021.10"
 # ENV GNU_PREFIX="arm-none-eabi"
+
+# Enable ccache
+ENV PATH="/opt/ccache-links:${PATH}"
+ENV CCACHE_DIR="/workspace/.build-cache/ccache"
+ENV CCACHE_MAXSIZE="1G"
+ENV CCACHE_COMPRESS="1"
