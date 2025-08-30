@@ -85,6 +85,10 @@ podman run --rm \
     bash -c "make clean && make"
 ```
 
+## TODO
+
+- [ ] Update the [Arm Ttolchain](https://developer.arm.com/downloads/-/arm-gnu-toolchain-downloads) (`arm-gnu-toolchain-14.3.rel1-aarch64-arm-none-eabi.tar.xz` and `arm-gnu-toolchain-14.3.rel1-x86_64-arm-none-eabi.tar.xz`).
+
 ## References
 
 - [nRF5 SDK v17.1.0: Introduction](https://docs.nordicsemi.com/bundle/sdk_nrf5_v17.1.0/page/index.html)
